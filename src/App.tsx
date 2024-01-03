@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import Welcome from "./pages/Welcome";
 
 const Layout = () => (
   <div className="layout-app">
@@ -17,6 +18,11 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
+      element: <Welcome />,
+    },
+
+    {
+      path: "/home",
       element: <Layout />,
       errorElement: <NotFound />,
       children: [{ index: true, element: <HomePage /> }],
