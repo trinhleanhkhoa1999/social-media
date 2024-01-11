@@ -1,37 +1,90 @@
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBCheckbox
-}
-from 'mdb-react-ui-kit';
 import { NavLink } from 'react-router-dom';
 
 export default function RegisterPage() {
-  return <div>
-    <MDBContainer fluid className='d-flex align-items-center justify-content-center bg-image h-screen ' style={{backgroundImage: 'url(https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp)'}}>
-      <div className='mask gradient-custom-3'></div>
-      <MDBCard className='m-5' style={{maxWidth: '600px'}}>
-        <MDBCardBody className='px-5 relative'>
-          <h2 className="text-uppercase text-center mb-5">Create an account</h2>
-          <MDBInput wrapperClass='mb-3' label='Your Name' size='lg' id='form1' type='text'/>
-          <MDBInput wrapperClass='mb-3' label='Your Email' size='lg' id='form2' type='email'/>
-          <MDBInput wrapperClass='mb-3' label='Password' size='lg' id='form3' type='password'/>
-          <MDBInput wrapperClass='mb-3' label='Repeat your password' size='lg' id='form4' type='password'/>
-          <div className='d-flex flex-row justify-content-center mb-4'>
-            <MDBCheckbox name='flexCheck' id='flexCheckDefault' label='I agree all statements in Terms of service' />
+  return (
+  <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img
+        className="mx-auto h-10 w-auto"
+        src="/vite.svg"
+        alt="Your Company"
+      />
+      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        Sign in to your account
+      </h2>
+    </div>
+
+    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form className="space-y-6" action="#" method="POST">
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+            Email address
+          </label>
+          <div className="mt-2">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
           </div>
-          <MDBBtn className='mb-4 w-100 gradient-custom-4' size='lg'>Register</MDBBtn>
-          <div className="text-center -mt-3">
-            <div className='border border-slate-500'></div>
-            <p className="  ">Or</p>
-            <NavLink  to="/Login"><MDBBtn className='mb-4 w-100 ' size='lg'>Login</MDBBtn></NavLink>
+        </div>
+
+        <div>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              Password
+            </label>
           </div>
-          
-        </MDBCardBody>
-      </MDBCard>
-    </MDBContainer>
-</div>;
+          <div className="mt-2">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+            Confirm password
+            </label>
+          </div>
+          <div className="mt-2">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+
+      <p className="mt-10 text-center text-sm text-gray-500">
+      Already have an account?{' '}
+        <NavLink to="/Login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+          Login
+        </NavLink>
+      </p>
+    </div>
+  </div>
+);
 }

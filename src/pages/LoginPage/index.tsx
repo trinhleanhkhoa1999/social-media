@@ -1,38 +1,77 @@
-import React from 'react';
-import {
-  MDBContainer,
-  MDBInput,
-  MDBCheckbox,
-  MDBBtn,
-}
-from 'mdb-react-ui-kit';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 export default function Login() {
   return (
-  <div className=' w-full h-screen  absolute' style={{backgroundImage: 'url(https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp)'}}>
-        <MDBContainer className="p-3 my-5 d-flex flex-column  w-25 h-4/6 top-16  bg-slate-400 px-5 relative rounded-lg ">
-          <h2 className="text-uppercase text-center mb-5">Login</h2>
-          <MDBInput wrapperClass='mb-3' label='Email address' id='form1' type='email'/>
-          <MDBInput wrapperClass='mb-3' label='Password' id='form2' type='password'/>
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img
+        className="mx-auto h-10 w-auto"
+        src="/vite.svg"
+        alt="Your Company"
+      />
+      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        Sign in to your account
+      </h2>
+    </div>
 
-          <div className=" flex  mb-4">
-            <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-            <a className='ml-2 no-underline' href="!#">Forgot password?</a>
+    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form className="space-y-6" action="#" method="POST">
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+            Email address
+          </label>
+          <div className="mt-2">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
           </div>
+        </div>
 
-          <MDBBtn className="mb-4">Sign in</MDBBtn>
-
-          <div className="text-center">
-            <p>Not a member? <NavLink className="no-underline" to="/register">Register</NavLink></p>
-            <p>or sign up with:</p>
-            <div className='flex text-center '>
-              <a className='ml-16' href="https://www.facebook.com/"><img className='w-6 h-6' src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/2048px-2023_Facebook_icon.svg.png" alt="" /></a>
-              <a className='ml-8' href="https://www.google.com.vn/?hl=vi"><img className='w-6 h-6' src="https://cdn.pixabay.com/photo/2021/05/24/09/15/google-logo-6278331_960_720.png" alt="" /></a>
-              <a className='ml-8' href="https://twitter.com/?lang=vi"><img className='w-6 h-6' src="https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-twitter-social-media-round-icon-png-image_6315985.png" alt="" /></a>
+        <div>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              Password
+            </label>
+            <div className="text-sm">
+              <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                Forgot password?
+              </a>
             </div>
           </div>
-        </MDBContainer>
+          <div className="mt-2">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Sign in
+          </button>
+        </div>
+      </form>
+
+      <p className="mt-10 text-center text-sm text-gray-500">
+        Not a member?{' '}
+        <NavLink to="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+          Register
+        </NavLink>
+      </p>
     </div>
+  </div>
     );
 }
