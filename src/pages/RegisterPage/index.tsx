@@ -1,6 +1,30 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function RegisterPage() {
+  const [email,setEmail] = useState("")
+  const [password,setPassword] = useState("")
+  const [username,setUsername] = useState("")
+  const [mess,setMess] = useState("")
+
+  // const handleOnChange =(e:any)=>{
+  //   setEmail(e.target.value);
+  //   setPassword(e.target.value)
+  //   setUsername(e.target.value)
+  // }
+  const validateEmail = () => {
+    const regEx =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    if(regEx.test(email)){
+      setMess("Email is valid")
+    }else if(!regEx.test(email)&& email!=""){
+      setMess("Email is not valid")
+    }else{
+      setMess("")
+    }
+    console.log('Lay gia tri',email,password,username)
+  };
+
   return (
   <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -15,7 +39,27 @@ export default function RegisterPage() {
     </div>
 
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form className="space-y-6" action="#" method="POST">
+      <form className="space-y-6" method="POST">
+        <div>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              Username
+            </label>
+          </div>
+          <div className="mt-2">
+            <input
+              id="username"
+              name="username"
+              type="text"
+              autoComplete="text"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+              required
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+
         <div>
           <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
             Email address
@@ -25,42 +69,29 @@ export default function RegisterPage() {
               id="email"
               name="email"
               type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
               autoComplete="email"
               required
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
+          {mess}
         </div>
 
         <div>
           <div className="flex items-center justify-between">
             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-              Password
+            Password
             </label>
           </div>
           <div className="mt-2">
             <input
               id="password"
-              name="password"
+              name="Password"
               type="password"
-              autoComplete="current-password"
-              required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div>
-          <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-            Confirm password
-            </label>
-          </div>
-          <div className="mt-2">
-            <input
-              id="password"
-              name="password"
-              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
               autoComplete="current-password"
               required
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -71,6 +102,7 @@ export default function RegisterPage() {
         <div>
           <button
             type="submit"
+            onClick={validateEmail}
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Register
