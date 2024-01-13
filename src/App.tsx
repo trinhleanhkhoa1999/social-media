@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -6,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Welcome from "./pages/Welcome";
+import Loading from "./components/Loading";
 
 const Layout = () => (
   <div className="layout-app">
@@ -19,6 +21,7 @@ function App() {
     {
       path: "/",
       element: <Welcome />,
+      errorElement: <NotFound />,
     },
 
     {
@@ -38,11 +41,11 @@ function App() {
       element: <RegisterPage />,
     },
   ]);
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+  const [loading, setLoading] = useState(true);
+  setTimeout(() => {
+    setLoading(false);
+  }, 3000);
+  return <>{loading ? <Loading /> : <RouterProvider router={router} />}</>;
 }
 
 export default App;
