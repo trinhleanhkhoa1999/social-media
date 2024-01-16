@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import axios from 'axios';
 
 export default function RegisterPage() {
   const [email,setEmail] = useState("")
@@ -13,17 +13,33 @@ export default function RegisterPage() {
   //   setPassword(e.target.value)
   //   setUsername(e.target.value)
   // }
-  const validateEmail = () => {
-    const regEx =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if(regEx.test(email)){
-      setMess("Email is valid")
-    }else if(!regEx.test(email)&& email!=""){
-      setMess("Email is not valid")
-    }else{
-      setMess("")
+  
+  
+    
+    const onSubmit =()=>{
+      const validateEmail = () => {
+        const regEx =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        if(regEx.test(email)){
+          setMess("Email is valid")
+        }else if(!regEx.test(email)&& email!=""){
+          setMess("Email is not valid")
+        }else{
+          setMess("")
+        }
+      };
+    const formData={
+      username:username,
+      email:email,
+      password:password,
     }
-    console.log('Lay gia tri',email,password,username)
-  };
+      axios.post('https://65a68b1074cf4207b4f051ea.mockapi.io/api/v1/accout',formData).then((res)=>
+      console.log(res)
+      ).catch((err)=>console.log(err)
+      )
+    }
+
+  
+  
 
   return (
   <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -88,7 +104,7 @@ export default function RegisterPage() {
           <div className="mt-2">
             <input
               id="password"
-              name="Password"
+              name="  "
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
@@ -102,7 +118,7 @@ export default function RegisterPage() {
         <div>
           <button
             type="submit"
-            onClick={validateEmail}
+            onClick={onSubmit}
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Register
