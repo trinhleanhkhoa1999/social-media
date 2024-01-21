@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+// import Header from "./components/Header";
+// import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -11,9 +11,7 @@ import Loading from "./components/Loading";
 
 const Layout = () => (
   <div className="layout-app">
-    <Header />
     <Outlet />
-    <Footer />
   </div>
 );
 function App() {
