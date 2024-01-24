@@ -1,15 +1,14 @@
 import LeftSidebar from "../../components/LeftSidebar";
 import MainComponent from "../../components/MainComponent";
+import RightSidebar from "../../components/RightSidebar";
 
 const HomePage = () => {
   return (
     <div className="w-full h-full flex justify-center items-center relative bg-black">
-      <div className="max-w-screen-lg w-full flex relative h-full">
-        {/* left siderbar for navigation/header */}
+      <div className="max-w-[70vw] w-full h-full flex relative">
         <LeftSidebar />
-        {/* main component content */}
         <MainComponent />
-        <section className="text-white">Right section</section>
+        <RightSidebar />
       </div>
     </div>
   );

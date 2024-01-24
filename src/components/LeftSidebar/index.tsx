@@ -41,7 +41,7 @@ const navigationItem = [
 ];
 const LeftSidebar = () => {
   return (
-    <section className="fixed w-[275px] flex flex-col items-stretch h-screen space-y-4 px-4">
+    <section className="sticky top-0 w-[23%] flex flex-col items-stretch h-screen px-4">
       <div className="flex flex-col items-stretch space-y-4 mt-4 h-full">
         {navigationItem.map((item, idx) => {
           return (
@@ -59,12 +59,12 @@ const LeftSidebar = () => {
           Tweet
         </button>
       </div>
-      <button className="w-full rounded-full flex items-center space-x-2 p-4 bg-transparent text-center hover:bg-white/20 transition duration-200 text-white">
+      <button className="w-full rounded-full flex items-center justify-center space-x-2 p-4 bg-transparent hover:bg-white/10 transition duration-200 text-white">
         <div className="flex items-center space-x-2">
           <div className="rounded-full bg-slate-400 w-10 h-10"></div>
           <div className="text-left text-xs">
             <div className="font-semibold">Clubs Of Coder</div>
-            <div className="text-xs">trinhleanhkhoa1999@gmail.com</div>
+            <div className="text-xs">khoaTrinh@gmail.com</div>
           </div>
         </div>
         <div>
