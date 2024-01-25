@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-import request from '../../utils/request';
 
 export default function RegisterPage() {
   const [email,setEmail] = useState("")
@@ -34,6 +33,7 @@ export default function RegisterPage() {
         password:password,
       }
        
+      axios.post("",)
       
     }
 
