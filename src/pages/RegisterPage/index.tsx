@@ -8,33 +8,28 @@ export default function RegisterPage() {
   const [username,setUsername] = useState("")
   const [mess,setMess] = useState("")
 
-  // const handleOnChange =(e:any)=>{
-  //   setEmail(e.target.value);
-  //   setPassword(e.target.value)
-  //   setUsername(e.target.value)
-  // }
+  
   
   
     
-    const onSubmit =()=>{
-      // const validateEmail = () => {
-      //   const regEx =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      //   if(regEx.test(email)){
-      //     setMess("Email is valid")
-      //   }else if(!regEx.test(email)&& email!=""){
-      //     setMess("Email is not valid")
-      //   }else{
-      //     setMess("")
-      //   }
-      // };
-      const users ={
-        username:username,
-        email:email,
-        password:password,
-      }
-       
-      axios.post("",)
-      
+      const validateEmail = () => {
+        const regEx =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        if(regEx.test(email)){
+          setMess("Email is valid")
+        }else if(!regEx.test(email)&& email!=""){
+          setMess("Email is not valid")
+        }else{
+          setMess("")
+        }
+      };
+     const onSubmit=(e)=>{
+      e.preventDefault()
+
+      axios.post("https://api.realworld.io/api/users",{user:{username:username,email:email,password:password}}).then(res=>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err);
+      })
     }
 
   return (
@@ -67,7 +62,6 @@ export default function RegisterPage() {
               value={username}
               onChange={(event) => setUsername(event.target.value)}
               required
-              onRateChange={onSubmit}
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
@@ -114,7 +108,6 @@ export default function RegisterPage() {
 
         <div>
           <button
-            type="submit"
             onClick={onSubmit}
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
