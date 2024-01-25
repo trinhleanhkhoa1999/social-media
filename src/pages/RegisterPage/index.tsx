@@ -22,15 +22,7 @@ export default function RegisterPage() {
           setMess("")
         }
       };
-     const onSubmit=(e)=>{
-      e.preventDefault()
-
-      axios.post("https://api.realworld.io/api/users",{user:{username:username,email:email,password:password}}).then(res=>{
-        console.log(res)
-      }).catch(err=>{
-        console.log(err);
-      })
-    }
+    
 
   return (
   <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
