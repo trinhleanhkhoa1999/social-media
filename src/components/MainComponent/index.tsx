@@ -8,13 +8,14 @@ import {
   FaShareSquare,
 } from "react-icons/fa";
 import Modal from "../Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../../redux/counter/counterSlice";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MainComponent = ({ listArticles }: any) => {
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState({});
 
-  console.log(data);
   const handleShowHide = (item: any) => {
     setShowModal(!showModal);
     setData(item);
@@ -22,8 +23,29 @@ const MainComponent = ({ listArticles }: any) => {
 
   const randomTime = Math.floor(Math.random() * 10) + 1;
 
+  const count = useSelector((state: any) => state.counter.value);
+  const dispatch = useDispatch();
+
   return (
     <main className="text-white mx-2 flex w-[58%] h-full min-h-screen flex-col border-l-[0.5px] border-r-[0.5px] border-gray-600">
+      <div>
+        <div>
+          <button
+            aria-label="Increment value"
+            onClick={() => dispatch(increment())}
+          >
+            Increment
+          </button>
+          <span>{count}</span>
+          <button
+            aria-label="Decrement value"
+            onClick={() => dispatch(decrement())}
+          >
+            Decrement
+          </button>
+        </div>
+      </div>
+
       <h1 className="text-2xl font-bold p-6  backdrop-blur bg-black/10 sticky top-0">
         Home
       </h1>
