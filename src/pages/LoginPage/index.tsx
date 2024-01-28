@@ -3,20 +3,21 @@ import { NavLink } from "react-router-dom";
 export default function Login() {
   
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img
-        className="mx-auto h-10 w-auto"
-        src="/vite.svg"
-        alt="Your Company"
-      />
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-        Sign in to your account
-      </h2>
-    </div>
-
-    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 z-0 ">
+    
+    <div className="mt-14  sm:mx-auto w-1/3  bg-slate-300 shadow-2xl rounded-lg">
+    <div className='sm:mx-auto sm:max-w-80 my-6'>
       <form className="space-y-6" action="#" method="POST">
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <img
+            className="mx-auto h-12 w-auto"
+            src="/vite.svg" 
+            alt="Your Company"
+          />
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            Sign in to your account
+          </h2>
+        </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
             Email address
@@ -74,5 +75,6 @@ export default function Login() {
       </p>
     </div>
   </div>
+</div>
     );
 }
