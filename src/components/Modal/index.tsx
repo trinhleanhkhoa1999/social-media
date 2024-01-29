@@ -1,5 +1,13 @@
+import { hideModal } from "../../redux/articles/articlesSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Modal = ({ setShowModal, data }: any) => {
+const Modal = () => {
+  const dispatch = useAppDispatch();
+  const data = useAppSelector((state) => state.articles.value);
+  const handleHideModal = () => {
+    dispatch(hideModal());
+  };
   console.log("check data modal: ", data);
   return (
     <>
@@ -12,7 +20,7 @@ const Modal = ({ setShowModal, data }: any) => {
               <h3 className="text-black text-3xl font-bold">{data.title}</h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                onClick={() => setShowModal(false)}
+                onClick={handleHideModal}
               >
                 <span className="text-black h-6 w-6 text-2xl block outline-none focus:outline-none">
                   x
@@ -30,14 +38,14 @@ const Modal = ({ setShowModal, data }: any) => {
               <button
                 className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                onClick={() => setShowModal(false)}
+                onClick={handleHideModal}
               >
                 Comment
               </button>
               <button
                 className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                onClick={() => setShowModal(false)}
+                onClick={handleHideModal}
               >
                 Close
               </button>
