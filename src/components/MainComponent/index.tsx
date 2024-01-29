@@ -8,17 +8,28 @@ import {
 } from "react-icons/fa";
 import Modal from "../Modal";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { getValue, showModal } from "../../redux/articles/articlesSlice";
+import {
+  getValue,
+  showModal,
+  showModalAddNew,
+} from "../../redux/articles/articlesSlice";
+import ModalAddNewArticles from "../ModalAddNewArticles";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MainComponent = () => {
   const dispatch = useAppDispatch();
   const listArticles = useAppSelector((state) => state.articles);
   const isShowModal = useAppSelector((state) => state.articles.isShowHideModal);
+  const isShowModalAddNew = useAppSelector(
+    (state) => state.articles.isShowHideModalAddNew
+  );
 
   const handleShowModal = (item: any) => {
     dispatch(showModal());
     dispatch(getValue(item));
+  };
+  const handleShowModalAddNew = () => {
+    dispatch(showModalAddNew());
   };
 
   return (
@@ -28,7 +39,7 @@ const MainComponent = () => {
       </h1>
       {/* what is happening */}
       <div className="border-t-[0.5px] px-4 border-b-[0.5px] flex items-stretch space-x-2 py-4 border-gray-600 relative">
-        <div className="w-10 h-10 rounded-full bg-gray-400 flex-none"></div>
+        {/* <div className="w-10 h-10 rounded-full bg-gray-400 flex-none"></div>
         <div className="flex flex-col w-full h-full">
           <input
             type="text"
@@ -43,7 +54,14 @@ const MainComponent = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
+        <h1
+          className="w-full h-10 flex justify-center items-center text-primary font-bold hover:text-lg transition duration-200 cursor-pointer"
+          onClick={handleShowModalAddNew}
+        >
+          What are you thinking about ?
+        </h1>
+        {isShowModalAddNew && <ModalAddNewArticles />}
       </div>
       {/* listArticles  */}
       <div className="flex flex-col">

@@ -25,14 +25,14 @@ const RightSidebar = () => {
       </div>
       <div className="flex flex-col rounded-xl bg-neutral-900 my-4">
         <h3 className="font-bold text-2xl px-4 my-4">Popular Tags</h3>
-        <div>
+        <div className="flex flex-wrap">
           {listArticles.articles &&
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             listArticles.articles.map((item: any, idx: any) => {
               return (
                 <div
                   key={idx}
-                  className="hover:bg-white/10 p-4 last:rounded-b-xl"
+                  className="hover:bg-white/10 p-4 last:rounded-b-xl border-dashed border-2 border-white m-1"
                 >
                   <div className="font-bold text-lg">{item.tagList[0]}</div>
                 </div>
