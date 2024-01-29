@@ -39,7 +39,7 @@ function App() {
       element: <RegisterPage />,
     },
   ]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   setTimeout(() => {
     setLoading(false);
   }, 3000);

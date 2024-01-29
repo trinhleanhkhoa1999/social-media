@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
 import { BsChat, BsDot } from "react-icons/bs";
 import {
   FaChartLine,
@@ -8,48 +7,25 @@ import {
   FaShareSquare,
 } from "react-icons/fa";
 import Modal from "../Modal";
-import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "../../redux/counter/counterSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { getValue, showModal } from "../../redux/articles/articlesSlice";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const MainComponent = ({ listArticles }: any) => {
-  const [showModal, setShowModal] = useState(false);
-  const [data, setData] = useState({});
+const MainComponent = () => {
+  const dispatch = useAppDispatch();
+  const listArticles = useAppSelector((state) => state.articles);
+  const isShowModal = useAppSelector((state) => state.articles.isShowHideModal);
 
-  const handleShowHide = (item: any) => {
-    setShowModal(!showModal);
-    setData(item);
+  const handleShowModal = (item: any) => {
+    dispatch(showModal());
+    dispatch(getValue(item));
   };
-
-  const randomTime = Math.floor(Math.random() * 10) + 1;
-
-  const count = useSelector((state: any) => state.counter.value);
-  const dispatch = useDispatch();
 
   return (
     <main className="text-white mx-2 flex w-[58%] h-full min-h-screen flex-col border-l-[0.5px] border-r-[0.5px] border-gray-600">
-      <div>
-        <div>
-          <button
-            aria-label="Increment value"
-            onClick={() => dispatch(increment())}
-          >
-            Increment
-          </button>
-          <span>{count}</span>
-          <button
-            aria-label="Decrement value"
-            onClick={() => dispatch(decrement())}
-          >
-            Decrement
-          </button>
-        </div>
-      </div>
-
       <h1 className="text-2xl font-bold p-6  backdrop-blur bg-black/10 sticky top-0">
         Home
       </h1>
-
       {/* what is happening */}
       <div className="border-t-[0.5px] px-4 border-b-[0.5px] flex items-stretch space-x-2 py-4 border-gray-600 relative">
         <div className="w-10 h-10 rounded-full bg-gray-400 flex-none"></div>
@@ -69,12 +45,11 @@ const MainComponent = ({ listArticles }: any) => {
           </div>
         </div>
       </div>
-
       {/* listArticles  */}
       <div className="flex flex-col">
-        {listArticles &&
+        {listArticles.articles &&
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          listArticles.map((item: any, idx: any) => (
+          listArticles.articles.map((item: any, idx: number) => (
             <div
               key={idx}
               className="border-b-[0.5px] border-gray-600 p-4 flex space-x-4"
@@ -92,11 +67,12 @@ const MainComponent = ({ listArticles }: any) => {
                 <div className="flex items-center w-full justify-between">
                   <div className="flex items-center w-full space-x-1">
                     <div className="font-bold">{item.author.username}</div>
-                    {/* <div className="text-gray-500">@trinhleanhkhoa</div> */}
                     <div className="text-gray-500">
                       <BsDot />
                     </div>
-                    <div className="text-gray-500">{randomTime} hours ago</div>
+                    <div className="text-gray-500">
+                      {Math.floor(Math.random() * 10) + 1} hours ago
+                    </div>
                   </div>
                 </div>
                 <div className="text-white text-xl font-medium my-2">
@@ -107,7 +83,7 @@ const MainComponent = ({ listArticles }: any) => {
                   <button
                     className="rounded-full hover:bg-white/10 transition duration-200 p-3 cursor-pointer"
                     type="button"
-                    onClick={() => handleShowHide(item)}
+                    onClick={() => handleShowModal(item)}
                   >
                     Read more ...
                   </button>
@@ -137,8 +113,9 @@ const MainComponent = ({ listArticles }: any) => {
             </div>
           ))}
       </div>
+
       {/* show dialog */}
-      {showModal && <Modal setShowModal={setShowModal} data={data} />}
+      {isShowModal && <Modal />}
     </main>
   );
 };

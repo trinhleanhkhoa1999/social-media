@@ -1,8 +1,10 @@
 import { BsSearch } from "react-icons/bs";
+import { useAppSelector } from "../../redux/hook";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const RightSidebar = ({ listArticles }: any) => {
-  console.log(listArticles);
+const RightSidebar = () => {
+  const listArticles = useAppSelector((state) => state.articles);
+
   return (
     <section className="text-white sticky top-0 mt-2 w-full flex flex-col items-stretch h-screen px-6 ml-auto">
       <div>
@@ -24,9 +26,9 @@ const RightSidebar = ({ listArticles }: any) => {
       <div className="flex flex-col rounded-xl bg-neutral-900 my-4">
         <h3 className="font-bold text-2xl px-4 my-4">Popular Tags</h3>
         <div>
-          {listArticles &&
+          {listArticles.articles &&
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            listArticles.map((item: any, idx: any) => {
+            listArticles.articles.map((item: any, idx: any) => {
               return (
                 <div
                   key={idx}
@@ -36,12 +38,6 @@ const RightSidebar = ({ listArticles }: any) => {
                 </div>
               );
             })}
-          {/* {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="hover:bg-white/10 p-4 last:rounded-b-xl">
-              <div className="font-bold text-lg">#trending ${i + 1}</div>
-              <div className="text-xs text-neutral-400">35.2k</div>
-            </div>
-          ))} */}
         </div>
       </div>
       <div></div>
