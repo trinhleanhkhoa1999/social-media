@@ -59,7 +59,7 @@ export default function RegisterPage() {
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Create your account
-            </h2>
+            </h2> 
           </div>
           <div>
             <div className="flex items-center justify-between">
@@ -109,7 +109,7 @@ export default function RegisterPage() {
             <div className="mt-2">
               <input
                 id="password"
-                name="  "
+                name="password"
                 type="password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}

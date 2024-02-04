@@ -9,6 +9,7 @@ import RegisterPage from "./pages/RegisterPage";
 import Welcome from "./pages/Welcome";
 import Loading from "./components/Loading";
 import Notification from "./components/Notification";
+import ProfilePage from "./pages/Profile/ProfilePage";
 
 const Layout = () => (
   <div className="layout-app">
@@ -42,6 +43,10 @@ function App() {
     {
       path: "/notifi",
       element: <Notification />,
+    },
+    {
+      path: "/profile",
+      element: <ProfilePage />,
     },
   ]);
   const [loading, setLoading] = useState(true);
