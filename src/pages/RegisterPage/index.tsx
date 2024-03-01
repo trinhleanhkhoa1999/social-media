@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useAppDispatch } from "../../redux/hook";
-import { createNewUser } from "../../redux/auth/registerSlice";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { createNewUser } from "../../redux/auth/userSlice";
 import { toast } from "react-toastify";
 
 export default function RegisterPage() {
@@ -9,7 +9,10 @@ export default function RegisterPage() {
   const [password, setPassword] = useState<string>("");
   const [username, setUsername] = useState<string>("");
 
+  const isSuccess = useAppSelector((state) => state.user.isSuccess);
+
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const validateEmail = (email: string) => {
     return String(email)
@@ -38,6 +41,10 @@ export default function RegisterPage() {
     }
     console.log(email, password, username);
     dispatch(createNewUser({ email, password, username }));
+
+    if (isSuccess) {
+      navigate("/login");
+    }
   };
 
   return (
