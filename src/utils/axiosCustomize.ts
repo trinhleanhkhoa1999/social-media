@@ -1,4 +1,5 @@
 import axios from "axios";
+import { store } from "../redux/store";
 
 const instance = axios.create({
   baseURL: "https://api.realworld.io/api/",
@@ -7,6 +8,11 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
+    const token = localStorage.getItem("token user");
+    const parseToken = JSON.parse(String(token));
+    if (parseToken) {
+      config.headers.Authorization = `Bearer ${parseToken}`;
+    }
     return config;
   },
   function (error) {
