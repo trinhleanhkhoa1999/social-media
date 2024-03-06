@@ -8,7 +8,7 @@ import { fetchListArticles } from "../../redux/articles/articlesSlice";
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const listArticles = useAppSelector((state) => state.articles);
-  console.log("check data HomePage: ", listArticles);
+  // console.log("check data HomePage: ", listArticles);
 
   useEffect(() => {
     const getListArticles = () => {

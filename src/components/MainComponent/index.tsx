@@ -8,10 +8,18 @@ import {
 } from "react-icons/fa";
 import Modal from "../Modal";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { getValue, showModal } from "../../redux/articles/articlesSlice";
+import {
+  getValue,
+  likeArticles,
+  showModal,
+  unLikeArticles,
+} from "../../redux/articles/articlesSlice";
+import { useState } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MainComponent = () => {
+  const [like, setLike] = useState(false);
+
   const dispatch = useAppDispatch();
   const listArticles = useAppSelector((state) => state.articles);
   const isShowModal = useAppSelector((state) => state.articles.isShowHideModal);
@@ -19,6 +27,18 @@ const MainComponent = () => {
   const handleShowModal = (item: any) => {
     dispatch(showModal());
     dispatch(getValue(item));
+  };
+
+  const handleLike = (item: any) => {
+    console.log("like bai viet");
+    console.log(item);
+    dispatch(likeArticles(item.slug));
+    setLike(!like);
+  };
+  const handleUnLike = (item: any) => {
+    console.log("un like bai viet");
+    dispatch(unLikeArticles(item.slug));
+    setLike(!like);
   };
 
   return (
@@ -96,10 +116,36 @@ const MainComponent = () => {
                   <div className="rounded-full hover:bg-white/10 transition duration-200 p-3 cursor-pointer">
                     <FaRetweet />
                   </div>
-                  <div className="rounded-full hover:bg-white/10 transition duration-200 p-3 cursor-pointer flex items-center gap-1">
+                  {item.favorited ? (
+                    <div
+                      className={`rounded-full  transition duration-200 p-3 cursor-pointer flex items-center gap-1 bg-pink-400`}
+                      onClick={() => handleUnLike(item)}
+                    >
+                      <FaRegHeart />
+                      {item.favoritesCount}
+                    </div>
+                  ) : (
+                    <div
+                      className="rounded-full hover:bg-white/10 transition duration-200 p-3 cursor-pointer flex items-center gap-1"
+                      onClick={() => handleLike(item)}
+                    >
+                      <FaRegHeart />
+                      {item.favoritesCount}
+                    </div>
+                  )}
+
+                  {/* <div
+                    className={`rounded-full  transition duration-200 p-3 cursor-pointer flex items-center gap-1 ${
+                      like ? "bg-pink-400" : ""
+                    }`}
+                    onClick={
+                      like ? () => handleUnLike(item) : () => handleLike(item)
+                    }
+                  >
                     <FaRegHeart />
                     {item.favoritesCount}
-                  </div>
+                  </div> */}
+
                   <div className="rounded-full hover:bg-white/10 transition duration-200 p-3 cursor-pointer">
                     <FaChartLine />
                   </div>
