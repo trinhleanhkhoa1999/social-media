@@ -18,5 +18,16 @@ const postLogin = (user: { email: string; password: string }) => {
     user: user,
   });
 };
-
-export { getAllArticles, postRegister, postLogin };
+const postLikeArticle = (slug: string) => {
+  return axios.post(`articles/${slug}/favorite`);
+};
+const deleLikeArticle = (slug: string) => {
+  return axios.delete(`articles/${slug}/favorite`);
+};
+export {
+  getAllArticles,
+  postRegister,
+  postLogin,
+  postLikeArticle,
+  deleLikeArticle,
+};

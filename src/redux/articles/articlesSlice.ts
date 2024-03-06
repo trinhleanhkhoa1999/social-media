@@ -1,11 +1,38 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAllArticles } from "../../services/apiService";
+import {
+  deleLikeArticle,
+  getAllArticles,
+  postLikeArticle,
+} from "../../services/apiService";
 
 export const fetchListArticles = createAsyncThunk(
   "fetchListArticles",
   async (userId, thunkAPI) => {
     const data = await getAllArticles();
-    console.log("check res from redux : ", data);
+    // console.log("check res from redux : ", data);
+    return data;
+  }
+);
+
+export const likeArticles = createAsyncThunk(
+  "likeArticles",
+  async (payload: string, thunkAPI) => {
+    const data = await postLikeArticle(payload);
+    // console.log("check payload from redux : ", payload);
+    // console.log("check res likeArticles : ", data);
+    if (data.article.id) {
+      thunkAPI.dispatch(fetchListArticles());
+    }
+    return data;
+  }
+);
+export const unLikeArticles = createAsyncThunk(
+  "likeArticles",
+  async (payload: string, thunkAPI) => {
+    const data = await deleLikeArticle(payload);
+    if (data.article.id) {
+      thunkAPI.dispatch(fetchListArticles());
+    }
     return data;
   }
 );
